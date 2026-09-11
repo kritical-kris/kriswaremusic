@@ -1,12 +1,12 @@
 const tracks = [
-    { title: "Super Blox Bros - Menu", source: "Super Blox Bros.", file: "Super Blox Bros - Menu.ogg" },
-    { title: "Bloxxing Fields", source: "Super Blox Bros.", file: "Bloxxing Fields.ogg" },
-    { title: "Fire Bloxxer", source: "Super Blox Bros.", file: "Fire Bloxxer.ogg" },
-    { title: "BLOX SHOT", source: "Super Blox Bros.", file: "BLOX SHOT.ogg" },
-    { title: "Escape from HQ", source: "Super Blox Bros.", file: "Escape from HQ.ogg" },
-    { title: "Chaos Canyon", source: "Super Blox Bros.", file: "Chaos Canyon.ogg" },
-    { title: "Banlands", source: "Super Blox Bros.", file: "Banlands.ogg" },
-    { title: "Blox On and On", source: "Super Blox Bros.", file: "Blox On and On.ogg" }
+    { title: "Super Blox Bros - Menu", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Super Blox Bros - Menu.ogg" },
+    { title: "Bloxxing Fields", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Bloxxing Fields.ogg" },
+    { title: "Fire Bloxxer", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Fire Bloxxer.ogg" },
+    { title: "BLOX SHOT", source: "Super Blox Bros.", arranger: "Kris Wright", file: "BLOX SHOT.ogg" },
+    { title: "Escape from HQ", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Escape from HQ.ogg" },
+    { title: "Chaos Canyon", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Chaos Canyon.ogg" },
+    { title: "Banlands", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Banlands.ogg" },
+    { title: "Blox On and On", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Blox On and On.ogg" }
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,21 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentTrackIndex = 0;
     let isPlaying = false;
 
-    if (!trackList) {
-        console.error("Error: Could not find element with id 'track-list'");
-        return;
-    }
+    if (!trackList) return;
 
     function loadTrack(index) {
         currentTrackIndex = index;
         const track = tracks[currentTrackIndex];
 
-        if (audioPlayer) {
-            audioPlayer.src = track.file;
-        }
-        if (heroTitle) {
-            heroTitle.textContent = track.title;
-        }
+        if (audioPlayer) audioPlayer.src = track.file;
+        if (heroTitle) heroTitle.textContent = track.title;
         
         displayTracks();
     }
@@ -39,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function playTrack() {
         if (!audioPlayer || tracks.length === 0) return;
         audioPlayer.play().catch(function (err) {
-            console.log("Audio playback waiting for user click:", err);
+            console.log("Audio play deferred until user interaction:", err);
         });
         isPlaying = true;
         displayTracks();
@@ -64,12 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             card.innerHTML = `
                 <div class="sound-item-left">
-                    <div class="series-icon">🧩</div>
+                    <div class="series-icon">🎮</div>
                     <div class="track-details">
                         <div class="track-title-text">${track.title}</div>
                         <div class="track-badges">
                             <span class="badge-label">From</span>
                             <span class="badge-val">${track.source}</span>
+                            <span class="badge-label">Arrangement</span>
+                            <span class="badge-val">${track.arranger}</span>
                         </div>
                     </div>
                 </div>
@@ -89,6 +84,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Load initial list
     loadTrack(0);
 });
