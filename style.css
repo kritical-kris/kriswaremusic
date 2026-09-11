@@ -2,24 +2,32 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background: #0d0e12;
+    background-color: #050608;
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
+        linear-gradient(180deg, #020305 0%, #0c0e14 100%);
+    background-size: 10px 10px, 100% 100%;
+    background-attachment: fixed;
     color: #ffffff;
     min-height: 100vh;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
 }
 
-/* Header Bar */
+/* Header Bar - Dark Aero Style */
 .smash-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #15171e;
-    padding: 12px 24px;
-    border-bottom: 2px solid #252830;
+    background: rgba(18, 20, 28, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 14px 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .header-left, .header-right {
@@ -37,138 +45,160 @@ body {
 }
 
 .brand-badge.red {
-    background: #e60012;
+    background: linear-gradient(180deg, #ff1a2a 0%, #b3000e 100%);
     color: #fff;
+    box-shadow: 0 0 10px rgba(230, 0, 18, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .home-btn {
-    font-size: 13px;
-    font-weight: 600;
-    transition: opacity 0.2s;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ccc;
+    transition: color 0.2s, transform 0.2s;
 }
 
 .home-btn:hover {
-    opacity: 0.8;
+    color: #fff;
+    transform: scale(1.05);
 }
 
 .header-center h1 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
 }
 
 .header-sub {
-    color: #e60012;
+    color: #ff2a3b;
+    text-shadow: 0 0 10px rgba(255, 42, 59, 0.6);
 }
 
 /* Content Layout */
 .content-wrapper {
-    max-width: 900px;
-    margin: 30px auto;
+    max-width: 950px;
+    margin: 40px auto;
     padding: 0 20px;
 }
 
-/* Hero Banner */
+/* Hero Banner - Dark Aero Glass */
 .hero-banner {
-    background: linear-gradient(135deg, #1f222c 0%, #111217 100%);
-    border: 1px solid #2d313d;
-    border-radius: 16px;
-    padding: 30px;
-    margin-bottom: 30px;
+    background: linear-gradient(135deg, rgba(30, 34, 48, 0.55) 0%, rgba(10, 12, 18, 0.75) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 5px solid #ff1a2a;
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 35px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .hero-subtitle {
     font-size: 12px;
-    font-weight: 700;
-    color: #e60012;
+    font-weight: 800;
+    color: #ff2a3b;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(255, 42, 59, 0.5);
 }
 
 .hero-title {
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 900;
-    margin: 8px 0 20px 0;
+    margin: 6px 0 22px 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .hero-buttons {
     display: flex;
-    gap: 12px;
+    gap: 14px;
 }
 
 .hero-btn {
-    background: #282c37;
-    border: 1px solid #3d4354;
+    background: linear-gradient(180deg, rgba(50, 56, 76, 0.6) 0%, rgba(25, 28, 38, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 8px;
     font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0, 0, 0, 0.4);
     transition: all 0.2s ease;
 }
 
 .hero-btn:hover {
-    background: #e60012;
-    border-color: #e60012;
+    background: linear-gradient(180deg, #ff2a3b 0%, #b3000e 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 18px rgba(230, 0, 18, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
 }
 
 .hero-footer-btn {
     position: absolute;
-    right: 30px;
-    bottom: 30px;
-    font-size: 12px;
-    color: #666;
+    right: 32px;
+    bottom: 32px;
+    font-size: 13px;
+    color: #888;
+    font-weight: 600;
 }
 
 /* Track List */
 .sound-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 
+/* Track Items - Dark Tinted Windows Aero Style */
 .sound-item {
-    background: #15171e;
-    border: 1px solid #222530;
+    background: linear-gradient(180deg, rgba(28, 32, 46, 0.45) 0%, rgba(12, 14, 20, 0.65) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
-    padding: 14px 20px;
+    padding: 16px 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    transition: all 0.2s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sound-item:hover {
-    background: #1c1f29;
-    border-color: #353a4a;
-    transform: translateX(4px);
+    background: linear-gradient(180deg, rgba(42, 48, 68, 0.6) 0%, rgba(20, 24, 34, 0.8) 100%);
+    border-color: rgba(255, 42, 59, 0.5);
+    transform: translateX(6px) scale(1.005);
+    box-shadow: -4px 0 0 #ff2a3b, 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 42, 59, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .sound-item-left {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 18px;
 }
 
-/* Iconic Container & Image Constraints */
+/* Icon Box - Glossy Aero Window Frame */
 .series-icon {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    background: #090a0d;
-    border: 1px solid #2d313d;
-    border-radius: 8px;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    background: linear-gradient(135deg, rgba(10, 12, 18, 0.9) 0%, rgba(22, 26, 38, 0.7) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 4px;
+    padding: 6px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .track-icon-img {
@@ -176,74 +206,98 @@ body {
     height: 100%;
     object-fit: contain;
     display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
 }
 
 .track-title-text {
-    font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 4px;
+    font-weight: 800;
+    font-size: 17px;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .track-badges {
-    font-size: 12px;
+    font-size: 13px;
     color: #888;
 }
 
 .badge-label {
     margin-right: 4px;
+    color: #666;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .badge-val {
-    margin-right: 12px;
+    margin-right: 14px;
     color: #ccc;
 }
 
 .circle-play-button {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background: #252832;
-    border: none;
+    background: linear-gradient(180deg, rgba(45, 52, 70, 0.7) 0%, rgba(20, 24, 32, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
 }
 
 .sound-item:hover .circle-play-button {
-    background: #e60012;
+    background: linear-gradient(180deg, #ff2a3b 0%, #b3000e 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(255, 42, 59, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transform: scale(1.08);
 }
 
-/* Floating Controls */
+/* Floating Controls - Aero Glass Pill */
 .floating-side-bar {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    right: 24px;
+    bottom: 24px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     z-index: 100;
 }
 
 .vertical-tab, .menu-circle-btn {
-    background: #1f222c;
-    border: 1px solid #353a4a;
+    background: rgba(20, 24, 34, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: #fff;
-    padding: 12px 18px;
+    padding: 12px 20px;
     border-radius: 30px;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.vertical-tab:hover, .menu-circle-btn:hover {
+    border-color: rgba(255, 42, 59, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 12px rgba(255, 42, 59, 0.3);
 }
 
 .vertical-tab.active {
-    background: #e60012;
-    border-color: #e60012;
+    background: linear-gradient(180deg, #ff2a3b 0%, #b3000e 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 42, 59, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .menu-lines {
@@ -256,16 +310,19 @@ body {
     width: 14px;
     height: 2px;
     background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Sidebar Drawer */
+/* Sidebar Drawer - Frosted Glass Glassmorphism */
 .sidebar-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -280,14 +337,17 @@ body {
 .side-drawer {
     position: fixed;
     top: 0;
-    right: -300px;
-    width: 280px;
+    right: -320px;
+    width: 300px;
     height: 100%;
-    background: #15171e;
-    border-left: 1px solid #2d313d;
-    padding: 30px 20px;
-    transition: right 0.3s ease;
+    background: rgba(14, 16, 24, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 35px 24px;
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 201;
+    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.9);
 }
 
 .side-drawer.active {
@@ -298,32 +358,47 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.drawer-header h3 {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
 .close-btn {
     background: none;
     border: none;
-    color: #fff;
-    font-size: 24px;
+    color: #aaa;
+    font-size: 28px;
     cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #ff2a3b;
 }
 
 .drawer-links {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
 }
 
 .drawer-links a {
     color: #ccc;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 15px;
-    transition: color 0.2s;
+    transition: all 0.2s;
 }
 
 .drawer-links a:hover {
-    color: #e60012;
+    color: #fff;
+    padding-left: 6px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
