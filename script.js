@@ -39,7 +39,7 @@ const tracks = [
         source: "Super Blox Bros.", 
         arranger: "Kris Wright", 
         file: "Chaos Canyon.ogg",
-        icon: "chaos-canyon.png" 
+        icon: "fire-bloxxer.png" 
     },
     { 
         title: "Banlands", 
