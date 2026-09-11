@@ -2,324 +2,292 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Arial Black', -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-    background-color: #0b0b0e;
+    background: #0d0e12;
     color: #ffffff;
     min-height: 100vh;
-    background-image: repeating-linear-gradient(
-        45deg,
-        #0b0b0e,
-        #0b0b0e 10px,
-        #121216 10px,
-        #121216 20px
-    );
-    overflow-x: hidden;
+    padding-bottom: 60px;
 }
 
-/* Header */
+/* Header Bar */
 .smash-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #000000;
-    padding: 8px 15px;
-    border-bottom: 2px solid #333;
+    background: #15171e;
+    padding: 12px 24px;
+    border-bottom: 2px solid #252830;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-badge {
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
 }
 
 .brand-badge.red {
     background: #e60012;
     color: #fff;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 3px 8px;
-    border-radius: 3px;
 }
 
 .home-btn {
-    font-size: 12px;
-    margin-left: 10px;
-    color: #ccc;
-    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: opacity 0.2s;
 }
 
-.smash-header h1 {
-    font-size: 32px;
-    font-style: italic;
-    letter-spacing: -1px;
+.home-btn:hover {
+    opacity: 0.8;
+}
+
+.header-center h1 {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
 .header-sub {
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 2px;
+    color: #e60012;
 }
 
-/* Page Container */
+/* Content Layout */
 .content-wrapper {
     max-width: 900px;
-    margin: 20px auto;
-    padding: 0 15px;
+    margin: 30px auto;
+    padding: 0 20px;
 }
 
-/* Hero Section */
+/* Hero Banner */
 .hero-banner {
+    background: linear-gradient(135deg, #1f222c 0%, #111217 100%);
+    border: 1px solid #2d313d;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
     position: relative;
-    width: 100%;
-    height: 320px;
-    border: 4px solid #ffffff;
-    background: linear-gradient(180deg, #1d2139 0%, #7d4960 45%, #e19069 80%, #fbd5a2 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.8);
-    margin-bottom: 20px;
-}
-
-.hero-content {
-    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
-    font-size: 18px;
-    color: #111;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 700;
+    color: #e60012;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
 .hero-title {
-    font-size: 48px;
-    color: #000;
-    font-style: italic;
-    margin-bottom: 15px;
-    letter-spacing: -1px;
+    font-size: 38px;
+    font-weight: 900;
+    margin: 8px 0 20px 0;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 2px;
-    background: #000;
-    padding: 3px;
-    border-radius: 4px;
+    gap: 12px;
 }
 
 .hero-btn {
-    background: #111;
+    background: #282c37;
+    border: 1px solid #3d4354;
     color: #fff;
-    border: none;
-    padding: 8px 24px;
-    font-size: 13px;
-    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: all 0.2s ease;
 }
 
 .hero-btn:hover {
-    background: #333;
+    background: #e60012;
+    border-color: #e60012;
 }
 
 .hero-footer-btn {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    background: #000;
-    color: #fff;
-    padding: 6px 16px;
+    right: 30px;
+    bottom: 30px;
     font-size: 12px;
-    font-weight: bold;
-    clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
+    color: #666;
 }
 
-/* Track List Items */
-.sound-item {
-    background: #121214;
-    border: 3px solid #ffffff;
-    margin-bottom: 15px;
+/* Track List */
+.sound-list {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sound-item {
+    background: #15171e;
+    border: 1px solid #222530;
+    border-radius: 12px;
+    padding: 14px 20px;
+    display: flex;
     justify-content: space-between;
-    padding: 15px 20px;
+    align-items: center;
     cursor: pointer;
-    transition: transform 0.1s ease;
+    transition: all 0.2s ease;
 }
 
 .sound-item:hover {
-    transform: scale(1.01);
+    background: #1c1f29;
+    border-color: #353a4a;
+    transform: translateX(4px);
 }
 
 .sound-item-left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 
+/* Iconic Container & Image Constraints */
 .series-icon {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: #090a0d;
+    border: 1px solid #2d313d;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    color: #888;
+    overflow: hidden;
+    padding: 4px;
 }
 
-.track-details {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.track-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .track-title-text {
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 4px;
 }
 
 .track-badges {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 12px;
+    color: #888;
 }
 
 .badge-label {
-    background: #44444a;
-    color: #aaa;
-    font-size: 10px;
-    padding: 2px 8px;
-    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    margin-right: 4px;
 }
 
 .badge-val {
-    font-size: 12px;
+    margin-right: 12px;
     color: #ccc;
-    font-weight: normal;
 }
 
 .circle-play-button {
-    width: 54px;
-    height: 54px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    border: 3px solid #ffffff;
-    background: transparent;
+    background: #252832;
+    border: none;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 12px;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .sound-item:hover .circle-play-button {
-    background: #ffffff;
-    color: #000000;
+    background: #e60012;
 }
 
 /* Floating Controls */
 .floating-side-bar {
     position: fixed;
-    right: 15px;
+    right: 20px;
     bottom: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    z-index: 90;
+    gap: 10px;
+    z-index: 100;
 }
 
-.vertical-tab {
-    cursor: pointer;
-    background: #000;
+.vertical-tab, .menu-circle-btn {
+    background: #1f222c;
+    border: 1px solid #353a4a;
     color: #fff;
-    border: 1px solid #444;
-    padding: 10px 4px;
-    writing-mode: vertical-rl;
-    font-size: 10px;
-    letter-spacing: 1px;
-    border-radius: 4px;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     display: flex;
     align-items: center;
-    gap: 5px;
-    transition: all 0.2s ease;
+    gap: 8px;
 }
 
 .vertical-tab.active {
-    border-color: #00e676;
-    color: #00e676;
+    background: #e60012;
+    border-color: #e60012;
 }
 
-.dot {
-    width: 6px;
-    height: 6px;
-    background: #00e676;
-    border-radius: 50%;
-}
-
-.menu-circle-btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #1a1a1c;
-    border: 2px solid #555;
-    color: #aaa;
-    font-size: 9px;
+.menu-lines {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 3px;
-    cursor: pointer;
 }
 
 .menu-lines span {
-    display: block;
-    width: 16px;
+    width: 14px;
     height: 2px;
-    background: #aaa;
-    margin: 2px 0;
+    background: #fff;
 }
 
-/* Sidebar Drawer & Overlay */
+/* Sidebar Drawer */
 .sidebar-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
     opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 99;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 200;
 }
 
 .sidebar-overlay.active {
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
 }
 
 .side-drawer {
     position: fixed;
     top: 0;
-    right: -320px;
+    right: -300px;
     width: 280px;
-    height: 100vh;
-    background: #111115;
-    border-left: 3px solid #ffffff;
-    box-shadow: -5px 0 25px rgba(0,0,0,0.8);
-    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 100;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+    height: 100%;
+    background: #15171e;
+    border-left: 1px solid #2d313d;
+    padding: 30px 20px;
+    transition: right 0.3s ease;
+    z-index: 201;
 }
 
 .side-drawer.active {
@@ -330,22 +298,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #333;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-}
-
-.drawer-header h3 {
-    font-size: 20px;
-    font-style: italic;
-    letter-spacing: 1px;
+    margin-bottom: 30px;
 }
 
 .close-btn {
-    background: transparent;
+    background: none;
     border: none;
     color: #fff;
-    font-size: 28px;
+    font-size: 24px;
     cursor: pointer;
 }
 
@@ -353,22 +313,17 @@ body {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .drawer-links a {
     color: #ccc;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    display: block;
-    padding: 10px 14px;
-    background: #1a1a1e;
-    border-left: 4px solid #e60012;
-    transition: all 0.2s ease;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.2s;
 }
 
 .drawer-links a:hover {
-    background: #ffffff;
-    color: #000000;
+    color: #e60012;
 }
