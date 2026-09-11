@@ -2,56 +2,56 @@ const tracks = [
     { 
         title: "Super Blox Bros - Menu", 
         source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
+        arranger: "Kris Wright", 
         file: "Super Blox Bros - Menu.ogg",
-        icon: "sbb-menu.png" 
+        icon: "sbb.png" 
     },
     { 
         title: "Bloxxing Fields", 
         source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
+        arranger: "Kris Wright", 
         file: "Bloxxing Fields.ogg",
-        icon: "bloxxing-fields.png" 
+        icon: "dr.png" 
     },
     { 
         title: "Fire Bloxxer", 
         source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
+        arranger: "Kris Wright", 
         file: "Fire Bloxxer.ogg",
         icon: "fire-bloxxer.png" 
     },
     { 
         title: "BLOX SHOT", 
         source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
+        arranger: "Kris Wright", 
         file: "bloxshot-v2.ogg",
-        icon: "blox-shot.png" 
+        icon: "dr.png" 
     },
     { 
         title: "Escape from HQ", 
         source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
+        arranger: "Kris Wright", 
         file: "Escape from HQ.ogg",
         icon: "escape-hq.png" 
     },
     { 
         title: "Chaos Canyon", 
         source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
+        arranger: "Kris Wright", 
         file: "Chaos Canyon.ogg",
         icon: "chaos-canyon.png" 
     },
     { 
         title: "Banlands", 
         source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
+        arranger: "Kris Wright", 
         file: "Banlands.ogg",
-        icon: "banlands.png" 
+        icon: "sbb.png" 
     },
     { 
         title: "Blox On and On", 
         source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
+        arranger: "Kris Wright", 
         file: "Blox On and On.ogg",
         icon: "blox-on-and-on.png" 
     }
