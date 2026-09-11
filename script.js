@@ -17,18 +17,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const trackList = document.getElementById("track-list");
     const heroTitle = document.getElementById("hero-title");
     
-    // Select the hero buttons
+    // UI Control Elements
+    const playAllBtn = document.getElementById("play-all-btn");
+    const openMenuBtn = document.getElementById("open-menu-btn");
+    const closeDrawerBtn = document.getElementById("close-drawer-btn");
+    const sideDrawer = document.getElementById("side-drawer");
+    const sidebarOverlay = document.getElementById("sidebar-overlay");
+
+    // Hero buttons
     const heroBtns = document.querySelectorAll(".hero-btn");
     const originalBtn = heroBtns[0];
     const remixBtn = heroBtns[1];
 
-    let currentTrackIndex = null; // null or string for hero tracks, index number for list tracks
+    let currentTrackIndex = null;
     let activeHeroFile = null;
     let isPlaying = false;
+    let isPlayAllActive = false;
 
     if (!trackList) return;
 
-    // Keep the hero title permanently set to "Spawnlight"
     if (heroTitle) {
         heroTitle.textContent = "Spawnlight";
     }
@@ -49,7 +56,58 @@ document.addEventListener("DOMContentLoaded", function () {
         displayTracks();
     }
 
-    // Play "Spawnlight" Original Version
+    // Auto-advance to the next song when Play All is enabled
+    if (audioPlayer) {
+        audioPlayer.addEventListener("ended", function () {
+            if (isPlayAllActive && typeof currentTrackIndex === "number") {
+                const nextIndex = (currentTrackIndex + 1) % tracks.length;
+                currentTrackIndex = nextIndex;
+                activeHeroFile = null;
+                playAudioFile(tracks[nextIndex].file);
+            } else {
+                isPlaying = false;
+                displayTracks();
+            }
+        });
+    }
+
+    // Play All Handler
+    if (playAllBtn) {
+        playAllBtn.addEventListener("click", function () {
+            isPlayAllActive = !isPlayAllActive;
+            playAllBtn.classList.toggle("active", isPlayAllActive);
+
+            if (isPlayAllActive) {
+                // Start playing from the first song in the list if nothing is playing
+                if (typeof currentTrackIndex !== "number") {
+                    currentTrackIndex = 0;
+                    activeHeroFile = null;
+                    playAudioFile(tracks[0].file);
+                } else if (!isPlaying) {
+                    audioPlayer.play();
+                    isPlaying = true;
+                    displayTracks();
+                }
+            }
+        });
+    }
+
+    // Sidebar Menu Controls
+    function toggleDrawer(open) {
+        if (open) {
+            sideDrawer.classList.add("active");
+            sidebarOverlay.classList.add("active");
+        } else {
+            sideDrawer.classList.remove("active");
+            sidebarOverlay.classList.remove("active");
+        }
+    }
+
+    if (openMenuBtn) openMenuBtn.addEventListener("click", () => toggleDrawer(true));
+    if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", () => toggleDrawer(false));
+    if (sidebarOverlay) sidebarOverlay.addEventListener("click", () => toggleDrawer(false));
+
+    // Hero Theme Play Handlers
     if (originalBtn) {
         originalBtn.addEventListener("click", function (e) {
             e.stopPropagation();
@@ -63,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Play "Spawnlight" Remix Version
     if (remixBtn) {
         remixBtn.addEventListener("click", function (e) {
             e.stopPropagation();
