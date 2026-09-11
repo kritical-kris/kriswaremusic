@@ -2,7 +2,7 @@ const tracks = [
     { title: "Super Blox Bros - Menu", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Super Blox Bros - Menu.ogg" },
     { title: "Bloxxing Fields", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Bloxxing Fields.ogg" },
     { title: "Fire Bloxxer", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Fire Bloxxer.ogg" },
-    { title: "BLOX SHOT", source: "Super Blox Bros.", arranger: "Kris Wright", file: "BLOX SHOT.ogg" },
+    { title: "BLOX SHOT", source: "Super Blox Bros.", arranger: "Kris Wright", file: "bloxshot-v2.ogg" },
     { title: "Escape from HQ", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Escape from HQ.ogg" },
     { title: "Chaos Canyon", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Chaos Canyon.ogg" },
     { title: "Banlands", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Banlands.ogg" },
