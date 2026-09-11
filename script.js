@@ -11,7 +11,7 @@ const tracks = [
         source: "Super Blox Bros.", 
         arranger: "Kris Wright", 
         file: "Bloxxing Fields.ogg",
-        icon: "dr.png" 
+        icon: "d2.png" 
     },
     { 
         title: "Fire Bloxxer", 
@@ -25,7 +25,7 @@ const tracks = [
         source: "Super Blox Bros.", 
         arranger: "Kris Wright", 
         file: "bloxshot-v2.ogg",
-        icon: "dr.png" 
+        icon: "d2.png" 
     },
     { 
         title: "Escape from HQ", 
