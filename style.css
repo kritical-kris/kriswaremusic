@@ -16,8 +16,10 @@ body {
         #121216 10px,
         #121216 20px
     );
+    overflow-x: hidden;
 }
 
+/* Header */
 .smash-header {
     display: flex;
     justify-content: space-between;
@@ -55,12 +57,14 @@ body {
     letter-spacing: 2px;
 }
 
+/* Page Container */
 .content-wrapper {
     max-width: 900px;
     margin: 20px auto;
     padding: 0 15px;
 }
 
+/* Hero Section */
 .hero-banner {
     position: relative;
     width: 100%;
@@ -114,7 +118,7 @@ body {
     gap: 8px;
 }
 
-.hero-btn.active, .hero-btn:hover {
+.hero-btn:hover {
     background: #333;
 }
 
@@ -134,6 +138,7 @@ body {
     cursor: pointer;
 }
 
+/* Track List Items */
 .sound-item {
     background: #121214;
     border: 3px solid #ffffff;
@@ -218,6 +223,7 @@ body {
     color: #000000;
 }
 
+/* Floating Controls */
 .floating-side-bar {
     position: fixed;
     right: 15px;
@@ -226,10 +232,13 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    z-index: 90;
 }
 
 .vertical-tab {
+    cursor: pointer;
     background: #000;
+    color: #fff;
     border: 1px solid #444;
     padding: 10px 4px;
     writing-mode: vertical-rl;
@@ -239,6 +248,12 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+    transition: all 0.2s ease;
+}
+
+.vertical-tab.active {
+    border-color: #00e676;
+    color: #00e676;
 }
 
 .dot {
@@ -270,4 +285,90 @@ body {
     height: 2px;
     background: #aaa;
     margin: 2px 0;
+}
+
+/* Sidebar Drawer & Overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-drawer {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 280px;
+    height: 100vh;
+    background: #111115;
+    border-left: 3px solid #ffffff;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.8);
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-drawer.active {
+    right: 0;
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.drawer-header h3 {
+    font-size: 20px;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.drawer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.drawer-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    padding: 10px 14px;
+    background: #1a1a1e;
+    border-left: 4px solid #e60012;
+    transition: all 0.2s ease;
+}
+
+.drawer-links a:hover {
+    background: #ffffff;
+    color: #000000;
 }
