@@ -30,7 +30,7 @@ function loadTrack(index) {
 
 function playTrack() {
     if (tracks.length === 0) return;
-    audioPlayer.play().catch(err => console.log("User action required:", err));
+    audioPlayer.play().catch(err => console.log("Audio play deferred until user interaction:", err));
     isPlaying = true;
     displayTracks(tracks);
 }
@@ -81,5 +81,5 @@ function displayTracks(trackArray) {
     });
 }
 
-// Initial Load
+// Automatically load the first track on render
 loadTrack(0);
