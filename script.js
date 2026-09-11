@@ -9,33 +9,29 @@ const tracks = [
     { title: "Blox On and On", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Blox On and On.ogg" }
 ];
 
+const mainThemeTrack = {
+    title: "Super Blox Bros - Main Theme",
+    file: "sbbmt.ogg"
+};
+
 document.addEventListener("DOMContentLoaded", function () {
     const audioPlayer = document.getElementById("audio-player");
     const trackList = document.getElementById("track-list");
     const heroTitle = document.getElementById("hero-title");
+    const heroBanner = document.querySelector(".hero-banner");
 
-    let currentTrackIndex = 0;
+    let currentTrackIndex = -1; // -1 represents the Hero Main Theme
     let isPlaying = false;
 
     if (!trackList) return;
 
-    function loadTrack(index) {
-        currentTrackIndex = index;
-        const track = tracks[currentTrackIndex];
-
-        if (audioPlayer) audioPlayer.src = track.file;
-        if (heroTitle) heroTitle.textContent = track.title;
-        
-        displayTracks();
-    }
-
-    function playTrack() {
-        if (!audioPlayer || tracks.length === 0) return;
-        audioPlayer.play().catch(function (err) {
-            console.log("Audio play deferred until user interaction:", err);
-        });
-        isPlaying = true;
-        displayTracks();
+    function playAudioFile(filePath) {
+        if (!audioPlayer) return;
+        audioPlayer.src = filePath;
+        audioPlayer.play().then(() => {
+            isPlaying = true;
+            displayTracks();
+        }).catch(err => console.log("User interaction required to start audio:", err));
     }
 
     function pauseTrack() {
@@ -45,6 +41,20 @@ document.addEventListener("DOMContentLoaded", function () {
         displayTracks();
     }
 
+    // Hero Banner Play Handler
+    if (heroBanner) {
+        heroBanner.style.cursor = "pointer";
+        heroBanner.addEventListener("click", function () {
+            if (currentTrackIndex === -1 && isPlaying) {
+                pauseTrack();
+            } else {
+                currentTrackIndex = -1;
+                if (heroTitle) heroTitle.textContent = mainThemeTrack.title;
+                playAudioFile(mainThemeTrack.file);
+            }
+        });
+    }
+
     function displayTracks() {
         trackList.innerHTML = "";
 
@@ -52,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const card = document.createElement("div");
             card.className = "sound-item";
 
-            const isCurrent = realIndex === currentTrackIndex;
+            const isCurrent = (realIndex === currentTrackIndex);
             const iconSymbol = (isCurrent && isPlaying) ? "❚❚" : "▶";
 
             card.innerHTML = `
@@ -71,12 +81,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="circle-play-button">${iconSymbol}</button>
             `;
 
-            card.addEventListener("click", function () {
+            card.addEventListener("click", function (e) {
+                e.stopPropagation();
                 if (realIndex === currentTrackIndex) {
-                    isPlaying ? pauseTrack() : playTrack();
+                    isPlaying ? pauseTrack() : audioPlayer.play();
                 } else {
-                    loadTrack(realIndex);
-                    playTrack();
+                    currentTrackIndex = realIndex;
+                    if (heroTitle) heroTitle.textContent = track.title;
+                    playAudioFile(track.file);
                 }
             });
 
@@ -84,5 +96,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    loadTrack(0);
+    displayTracks();
 });
