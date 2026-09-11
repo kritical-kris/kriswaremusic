@@ -9,21 +9,29 @@ const tracks = [
     { title: "Blox On and On", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Blox On and On.ogg" }
 ];
 
-const mainThemeTrack = {
-    title: "Super Blox Bros - Main Theme",
-    file: "sbbmt.ogg"
-};
+const spawnlightOriginal = "sbbmt.ogg";
+const spawnlightRemix = "sbbmtr.ogg";
 
 document.addEventListener("DOMContentLoaded", function () {
     const audioPlayer = document.getElementById("audio-player");
     const trackList = document.getElementById("track-list");
     const heroTitle = document.getElementById("hero-title");
-    const heroBanner = document.querySelector(".hero-banner");
+    
+    // Select the hero buttons
+    const heroBtns = document.querySelectorAll(".hero-btn");
+    const originalBtn = heroBtns[0];
+    const remixBtn = heroBtns[1];
 
-    let currentTrackIndex = -1; // -1 represents the Hero Main Theme
+    let currentTrackIndex = null; // null or string for hero tracks, index number for list tracks
+    let activeHeroFile = null;
     let isPlaying = false;
 
     if (!trackList) return;
+
+    // Keep the hero title permanently set to "Spawnlight"
+    if (heroTitle) {
+        heroTitle.textContent = "Spawnlight";
+    }
 
     function playAudioFile(filePath) {
         if (!audioPlayer) return;
@@ -41,16 +49,30 @@ document.addEventListener("DOMContentLoaded", function () {
         displayTracks();
     }
 
-    // Hero Banner Play Handler
-    if (heroBanner) {
-        heroBanner.style.cursor = "pointer";
-        heroBanner.addEventListener("click", function () {
-            if (currentTrackIndex === -1 && isPlaying) {
+    // Play "Spawnlight" Original Version
+    if (originalBtn) {
+        originalBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (activeHeroFile === spawnlightOriginal && isPlaying) {
                 pauseTrack();
             } else {
-                currentTrackIndex = -1;
-                if (heroTitle) heroTitle.textContent = mainThemeTrack.title;
-                playAudioFile(mainThemeTrack.file);
+                activeHeroFile = spawnlightOriginal;
+                currentTrackIndex = "hero-original";
+                playAudioFile(spawnlightOriginal);
+            }
+        });
+    }
+
+    // Play "Spawnlight" Remix Version
+    if (remixBtn) {
+        remixBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (activeHeroFile === spawnlightRemix && isPlaying) {
+                pauseTrack();
+            } else {
+                activeHeroFile = spawnlightRemix;
+                currentTrackIndex = "hero-remix";
+                playAudioFile(spawnlightRemix);
             }
         });
     }
@@ -87,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     isPlaying ? pauseTrack() : audioPlayer.play();
                 } else {
                     currentTrackIndex = realIndex;
-                    if (heroTitle) heroTitle.textContent = track.title;
+                    activeHeroFile = null;
                     playAudioFile(track.file);
                 }
             });
