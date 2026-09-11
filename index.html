@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- Global Header Top Bar -->
     <header class="smash-header">
         <div class="header-left">
             <span class="brand-badge red">BLOX</span>
@@ -24,30 +23,27 @@
 
     <main class="content-wrapper">
 
-        <!-- Featured Track Banner -->
         <section class="hero-banner">
             <div class="hero-content">
                 <span class="hero-subtitle">Main Theme</span>
                 <h2 id="hero-title" class="hero-title">Super Blox Bros - Menu</h2>
                 
                 <div class="hero-buttons">
-                    <button class="hero-btn active" id="hero-play-1">Original Version <span class="play-icn">▶</span></button>
-                    <button class="hero-btn" id="hero-play-2">Remix Ver. <span class="play-icn">▶</span></button>
+                    <button class="hero-btn active">Original Version <span class="play-icn">▶</span></button>
+                    <button class="hero-btn">Remix Ver. <span class="play-icn">▶</span></button>
                 </div>
             </div>
-            <div class="hero-footer-btn" id="hero-play-3">
-                E3 2026 Ver. <span class="pause-icn">❚❚</span>
+            <div class="hero-footer-btn">
+                E3 Ver. <span class="pause-icn">❚❚</span>
             </div>
         </section>
 
-        <!-- Track List Section -->
         <section class="sound-list" id="track-list">
-            <!-- Tracks dynamically rendered here -->
+            <!-- Dynamic track items loaded by JS -->
         </section>
 
     </main>
 
-    <!-- Side Menu / Floating Controls -->
     <div class="floating-side-bar">
         <div class="vertical-tab">Play All <span class="dot"></span></div>
         <button class="menu-circle-btn">
@@ -56,9 +52,8 @@
         </button>
     </div>
 
-    <!-- Hidden Audio Player -->
     <audio id="audio-player"></audio>
-    
-<script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
