@@ -26,10 +26,10 @@
         <section class="hero-banner">
             <div class="hero-content">
                 <span class="hero-subtitle">Main Theme</span>
-                <h2 id="hero-title" class="hero-title">Super Blox Bros - Menu</h2>
+                <h2 id="hero-title" class="hero-title">Spawnlight</h2>
                 
                 <div class="hero-buttons">
-                    <button class="hero-btn active">Original Version <span class="play-icn">▶</span></button>
+                    <button class="hero-btn">Original Version <span class="play-icn">▶</span></button>
                     <button class="hero-btn">Remix Ver. <span class="play-icn">▶</span></button>
                 </div>
             </div>
@@ -44,9 +44,27 @@
 
     </main>
 
+    <!-- Slide-out Navigation Drawer -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <aside id="side-drawer" class="side-drawer">
+        <div class="drawer-header">
+            <h3>NAVIGATE</h3>
+            <button id="close-drawer-btn" class="close-btn">&times;</button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="https://roblox.com" target="_blank" rel="noopener">Official Roblox Group</a></li>
+            <li><a href="#hero-title">Main Theme</a></li>
+            <li><a href="#track-list">Tracklist</a></li>
+            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub Repository</a></li>
+        </ul>
+    </aside>
+
+    <!-- Floating UI Controls -->
     <div class="floating-side-bar">
-        <div class="vertical-tab">Play All <span class="dot"></span></div>
-        <button class="menu-circle-btn">
+        <button id="play-all-btn" class="vertical-tab">
+            Play All <span class="dot"></span>
+        </button>
+        <button id="open-menu-btn" class="menu-circle-btn">
             <div class="menu-lines"><span></span><span></span><span></span></div>
             <span>MENU</span>
         </button>
