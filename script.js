@@ -9,77 +9,86 @@ const tracks = [
     { title: "Blox On and On", source: "Super Blox Bros.", file: "Blox On and On.ogg" }
 ];
 
-const audioPlayer = document.getElementById("audio-player");
-const trackList = document.getElementById("track-list");
-const heroTitle = document.getElementById("hero-title");
+document.addEventListener("DOMContentLoaded", function () {
+    const audioPlayer = document.getElementById("audio-player");
+    const trackList = document.getElementById("track-list");
+    const heroTitle = document.getElementById("hero-title");
 
-let currentTrackIndex = 0;
-let isPlaying = false;
+    let currentTrackIndex = 0;
+    let isPlaying = false;
 
-function loadTrack(index) {
-    currentTrackIndex = index;
-    const track = tracks[currentTrackIndex];
-
-    audioPlayer.src = track.file;
-    if (heroTitle) {
-        heroTitle.textContent = track.title;
+    if (!trackList) {
+        console.error("Error: Could not find element with id 'track-list'");
+        return;
     }
-    
-    displayTracks(tracks);
-}
 
-function playTrack() {
-    if (tracks.length === 0) return;
-    audioPlayer.play().catch(err => console.log("Audio play deferred until user interaction:", err));
-    isPlaying = true;
-    displayTracks(tracks);
-}
+    function loadTrack(index) {
+        currentTrackIndex = index;
+        const track = tracks[currentTrackIndex];
 
-function pauseTrack() {
-    audioPlayer.pause();
-    isPlaying = false;
-    displayTracks(tracks);
-}
+        if (audioPlayer) {
+            audioPlayer.src = track.file;
+        }
+        if (heroTitle) {
+            heroTitle.textContent = track.title;
+        }
+        
+        displayTracks();
+    }
 
-function displayTracks(trackArray) {
-    trackList.innerHTML = "";
+    function playTrack() {
+        if (!audioPlayer || tracks.length === 0) return;
+        audioPlayer.play().catch(function (err) {
+            console.log("Audio playback waiting for user click:", err);
+        });
+        isPlaying = true;
+        displayTracks();
+    }
 
-    trackArray.forEach((track) => {
-        const realIndex = tracks.indexOf(track);
-        const card = document.createElement("div");
-        card.classList.add("sound-item");
+    function pauseTrack() {
+        if (!audioPlayer) return;
+        audioPlayer.pause();
+        isPlaying = false;
+        displayTracks();
+    }
 
-        const isCurrent = realIndex === currentTrackIndex;
-        const iconSymbol = (isCurrent && isPlaying) ? "❚❚" : "▶";
+    function displayTracks() {
+        trackList.innerHTML = "";
 
-        card.innerHTML = `
-            <div class="sound-item-left">
-                <div class="series-icon">🧩</div>
-                <div class="track-details">
-                    <div class="track-title-text">${track.title}</div>
-                    <div class="track-badges">
-                        <span class="badge-label">From</span>
-                        <span class="badge-val">${track.source}</span>
-                        <span class="badge-label">Arrangement</span>
-                        <span class="badge-val">Grant Kirkhope</span>
+        tracks.forEach(function (track, realIndex) {
+            const card = document.createElement("div");
+            card.className = "sound-item";
+
+            const isCurrent = realIndex === currentTrackIndex;
+            const iconSymbol = (isCurrent && isPlaying) ? "❚❚" : "▶";
+
+            card.innerHTML = `
+                <div class="sound-item-left">
+                    <div class="series-icon">🧩</div>
+                    <div class="track-details">
+                        <div class="track-title-text">${track.title}</div>
+                        <div class="track-badges">
+                            <span class="badge-label">From</span>
+                            <span class="badge-val">${track.source}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <button class="circle-play-button">${iconSymbol}</button>
-        `;
+                <button class="circle-play-button">${iconSymbol}</button>
+            `;
 
-        card.addEventListener("click", () => {
-            if (realIndex === currentTrackIndex) {
-                isPlaying ? pauseTrack() : playTrack();
-            } else {
-                loadTrack(realIndex);
-                playTrack();
-            }
+            card.addEventListener("click", function () {
+                if (realIndex === currentTrackIndex) {
+                    isPlaying ? pauseTrack() : playTrack();
+                } else {
+                    loadTrack(realIndex);
+                    playTrack();
+                }
+            });
+
+            trackList.appendChild(card);
         });
+    }
 
-        trackList.appendChild(card);
-    });
-}
-
-// Automatically load the first track on render
-loadTrack(0);
+    // Load initial list
+    loadTrack(0);
+});
