@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="badge-label">From</span>
                             <span class="badge-val">${track.source}</span>
                             <span class="badge-label">Arrangement</span>
-                            <span class="badge-val">${track.arranger}</span>
+                            <span class="badge-val" style="color: #ffffff; font-weight: bold;">${track.arranger}</span>
                         </div>
                     </div>
                 </div>
