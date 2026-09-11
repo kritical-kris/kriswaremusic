@@ -1,12 +1,60 @@
 const tracks = [
-    { title: "Super Blox Bros - Menu", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Super Blox Bros - Menu.ogg" },
-    { title: "Bloxxing Fields", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Bloxxing Fields.ogg" },
-    { title: "Fire Bloxxer", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Fire Bloxxer.ogg" },
-    { title: "BLOX SHOT", source: "Super Blox Bros.", arranger: "Kris Wright", file: "bloxshot-v2.ogg" },
-    { title: "Escape from HQ", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Escape from HQ.ogg" },
-    { title: "Chaos Canyon", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Chaos Canyon.ogg" },
-    { title: "Banlands", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Banlands.ogg" },
-    { title: "Blox On and On", source: "Super Blox Bros.", arranger: "Kris Wright", file: "Blox On and On.ogg" }
+    { 
+        title: "Super Blox Bros - Menu", 
+        source: "Super Blox Bros.", 
+        arranger: "Tixeron", 
+        file: "Super Blox Bros - Menu.ogg",
+        icon: "sbb-menu.png" 
+    },
+    { 
+        title: "Bloxxing Fields", 
+        source: "Super Blox Bros.", 
+        arranger: "Tixeron", 
+        file: "Bloxxing Fields.ogg",
+        icon: "bloxxing-fields.png" 
+    },
+    { 
+        title: "Fire Bloxxer", 
+        source: "Super Blox Bros.", 
+        arranger: "Tixeron", 
+        file: "Fire Bloxxer.ogg",
+        icon: "fire-bloxxer.png" 
+    },
+    { 
+        title: "BLOX SHOT", 
+        source: "Super Blox Bros.", 
+        arranger: "Tixeron", 
+        file: "bloxshot-v2.ogg",
+        icon: "blox-shot.png" 
+    },
+    { 
+        title: "Escape from HQ", 
+        source: "Super Blox Bros.", 
+        arranger: "Tixeron", 
+        file: "Escape from HQ.ogg",
+        icon: "escape-hq.png" 
+    },
+    { 
+        title: "Chaos Canyon", 
+        source: "Super Blox Bros.", 
+        arranger: "Tixeron", 
+        file: "Chaos Canyon.ogg",
+        icon: "chaos-canyon.png" 
+    },
+    { 
+        title: "Banlands", 
+        source: "Super Blox Bros.", 
+        arranger: "Tixeron", 
+        file: "Banlands.ogg",
+        icon: "banlands.png" 
+    },
+    { 
+        title: "Blox On and On", 
+        source: "Super Blox Bros.", 
+        arranger: "Tixeron", 
+        file: "Blox On and On.ogg",
+        icon: "blox-on-and-on.png" 
+    }
 ];
 
 const spawnlightOriginal = "sbbmt.ogg";
@@ -17,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const trackList = document.getElementById("track-list");
     const heroTitle = document.getElementById("hero-title");
     
-    // UI Control Elements
+    // UI Controls
     const playAllBtn = document.getElementById("play-all-btn");
     const openMenuBtn = document.getElementById("open-menu-btn");
     const closeDrawerBtn = document.getElementById("close-drawer-btn");
@@ -25,16 +73,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const sidebarOverlay = document.getElementById("sidebar-overlay");
 
     // Hero buttons
-    const heroBtns = document.querySelectorAll(".hero-btn");
-    const originalBtn = heroBtns[0];
-    const remixBtn = heroBtns[1];
+    const heroButtons = document.querySelectorAll(".hero-buttons .hero-btn");
+    const originalBtn = heroButtons[0];
+    const remixBtn = heroButtons[1];
 
     let currentTrackIndex = null;
     let activeHeroFile = null;
     let isPlaying = false;
     let isPlayAllActive = false;
-
-    if (!trackList) return;
 
     if (heroTitle) {
         heroTitle.textContent = "Spawnlight";
@@ -43,10 +89,16 @@ document.addEventListener("DOMContentLoaded", function () {
     function playAudioFile(filePath) {
         if (!audioPlayer) return;
         audioPlayer.src = filePath;
-        audioPlayer.play().then(() => {
-            isPlaying = true;
-            displayTracks();
-        }).catch(err => console.log("User interaction required to start audio:", err));
+        
+        const playPromise = audioPlayer.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                isPlaying = true;
+                displayTracks();
+            }).catch(err => {
+                console.error("Audio failed to play. Check if file exists:", filePath, err);
+            });
+        }
     }
 
     function pauseTrack() {
@@ -56,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
         displayTracks();
     }
 
-    // Auto-advance to the next song when Play All is enabled
+    // Auto-advance for Play All
     if (audioPlayer) {
         audioPlayer.addEventListener("ended", function () {
             if (isPlayAllActive && typeof currentTrackIndex === "number") {
@@ -78,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
             playAllBtn.classList.toggle("active", isPlayAllActive);
 
             if (isPlayAllActive) {
-                // Start playing from the first song in the list if nothing is playing
                 if (typeof currentTrackIndex !== "number") {
                     currentTrackIndex = 0;
                     activeHeroFile = null;
@@ -92,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Sidebar Menu Controls
+    // Sidebar Menu Handlers
     function toggleDrawer(open) {
         if (open) {
             sideDrawer.classList.add("active");
@@ -107,10 +158,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", () => toggleDrawer(false));
     if (sidebarOverlay) sidebarOverlay.addEventListener("click", () => toggleDrawer(false));
 
-    // Hero Theme Play Handlers
+    // Hero Original Button Click
     if (originalBtn) {
         originalBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
+            e.preventDefault();
             if (activeHeroFile === spawnlightOriginal && isPlaying) {
                 pauseTrack();
             } else {
@@ -121,9 +172,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Hero Remix Button Click
     if (remixBtn) {
         remixBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
+            e.preventDefault();
             if (activeHeroFile === spawnlightRemix && isPlaying) {
                 pauseTrack();
             } else {
@@ -134,7 +186,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Render Tracklist with PNG Icons
     function displayTracks() {
+        if (!trackList) return;
         trackList.innerHTML = "";
 
         tracks.forEach(function (track, realIndex) {
@@ -146,7 +200,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             card.innerHTML = `
                 <div class="sound-item-left">
-                    <div class="series-icon">🎮</div>
+                    <div class="series-icon">
+                        <img src="${track.icon}" alt="${track.title} icon" class="track-icon-img" />
+                    </div>
                     <div class="track-details">
                         <div class="track-title-text">${track.title}</div>
                         <div class="track-badges">
