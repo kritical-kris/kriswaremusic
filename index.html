@@ -11,7 +11,7 @@
     <header class="smash-header">
         <div class="header-left">
             <span class="brand-badge red">BLOX</span>
-            <a href="https://kriswarelabs.github.io/krisware.github.io/" class="home-btn" style="text-decoration: none; color: #ccc;">🏠 Home</a>
+            <a href="https://kriswarelabs.github.io/krisware.github.io/" class="home-btn">🏠 Home</a>
         </div>
         <div class="header-center">
             <h1>SUPER BLOX BROS. <span class="header-sub">MUSIC</span></h1>
@@ -29,12 +29,16 @@
                 <h2 id="hero-title" class="hero-title">Spawnlight</h2>
                 
                 <div class="hero-buttons">
-                    <button class="hero-btn">Original Version <span class="play-icn">▶</span></button>
-                    <button class="hero-btn">Remix Ver. <span class="play-icn">▶</span></button>
+                    <button class="hero-btn" data-file="sbbmt.ogg">
+                        Original Version <span class="play-icn">▶</span>
+                    </button>
+                    <button class="hero-btn" data-file="sbbmtr.ogg">
+                        Remix Ver. <span class="play-icn">▶</span>
+                    </button>
                 </div>
             </div>
-            <div class="hero-footer-btn">
-                E3 Ver. <span class="pause-icn">❚❚</span>
+            <div class="hero-footer-btn" data-file="sbbmte3.ogg">
+                E3 Ver. <span class="pause-icn">▶</span>
             </div>
         </section>
 
@@ -71,7 +75,8 @@
         </button>
     </div>
 
-    <audio id="audio-player"></audio>
+    <!-- Hidden audio element managed by JS -->
+    <audio id="audio-player" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
