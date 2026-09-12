@@ -1,64 +1,13 @@
 const tracks = [
-    { 
-        title: "Super Blox Bros - Menu", 
-        source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
-        file: "Super Blox Bros - Menu.ogg",
-        icon: "sbb.png" 
-    },
-    { 
-        title: "Bloxxing Fields", 
-        source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
-        file: "Bloxxing Fields.ogg",
-        icon: "d2.png" 
-    },
-    { 
-        title: "Fire Bloxxer", 
-        source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
-        file: "Fire Bloxxer.ogg",
-        icon: "fire-bloxxer.png" 
-    },
-    { 
-        title: "BLOX SHOT", 
-        source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
-        file: "bloxshot-v2.ogg",
-        icon: "d2.png" 
-    },
-    { 
-        title: "Escape from HQ", 
-        source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
-        file: "Escape from HQ.ogg",
-        icon: "escape-hq.png" 
-    },
-    { 
-        title: "Chaos Canyon", 
-        source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
-        file: "Chaos Canyon.ogg",
-        icon: "fire-bloxxer.png" 
-    },
-    { 
-        title: "Banlands", 
-        source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
-        file: "Banlands.ogg",
-        icon: "sbb.png" 
-    },
-    { 
-        title: "From Now On (Remix)", 
-        source: "Super Blox Bros.", 
-        arranger: "Tixeron", 
-        file: "Blox On and On.ogg",
-        icon: "d2.png" 
-    }
+    { title: "Super Blox Bros - Menu", source: "Super Blox Bros.", arranger: "Tixeron", file: "Super Blox Bros - Menu.ogg", icon: "sbb.png" },
+    { title: "Bloxxing Fields", source: "Super Blox Bros.", arranger: "Tixeron", file: "Bloxxing Fields.ogg", icon: "d2.png" },
+    { title: "Fire Bloxxer", source: "Super Blox Bros.", arranger: "Tixeron", file: "Fire Bloxxer.ogg", icon: "fire-bloxxer.png" },
+    { title: "BLOX SHOT", source: "Super Blox Bros.", arranger: "Tixeron", file: "bloxshot-v2.ogg", icon: "d2.png" },
+    { title: "Escape from HQ", source: "Super Blox Bros.", arranger: "Tixeron", file: "Escape from HQ.ogg", icon: "escape-hq.png" },
+    { title: "Chaos Canyon", source: "Super Blox Bros.", arranger: "Tixeron", file: "Chaos Canyon.ogg", icon: "fire-bloxxer.png" },
+    { title: "Banlands", source: "Super Blox Bros.", arranger: "Tixeron", file: "Banlands.ogg", icon: "sbb.png" },
+    { title: "From Now On (Remix)", source: "Super Blox Bros.", arranger: "Tixeron", file: "Blox On and On.ogg", icon: "d2.png" }
 ];
-
-const spawnlightOriginal = "sbbmt.ogg";
-const spawnlightRemix = "sbbmtr.ogg";
 
 document.addEventListener("DOMContentLoaded", function () {
     const audioPlayer = document.getElementById("audio-player");
@@ -72,13 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const sideDrawer = document.getElementById("side-drawer");
     const sidebarOverlay = document.getElementById("sidebar-overlay");
 
-    // Hero buttons
-    const heroButtons = document.querySelectorAll(".hero-buttons .hero-btn");
-    const originalBtn = heroButtons[0];
-    const remixBtn = heroButtons[1];
+    // All Hero Buttons (Original, Remix, E3)
+    const heroBtns = document.querySelectorAll(".hero-btn, .hero-footer-btn");
 
-    let currentTrackIndex = null;
-    let activeHeroFile = null;
+    let activeFilePath = null;
     let isPlaying = false;
     let isPlayAllActive = false;
 
@@ -88,37 +34,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function playAudioFile(filePath) {
         if (!audioPlayer) return;
-        audioPlayer.src = filePath;
-        
-        const playPromise = audioPlayer.play();
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                isPlaying = true;
-                displayTracks();
-            }).catch(err => {
-                console.error("Audio failed to play. Check if file exists:", filePath, err);
-            });
+
+        // Load new file if different
+        if (activeFilePath !== filePath) {
+            audioPlayer.src = filePath;
+            activeFilePath = filePath;
         }
+
+        audioPlayer.play().then(() => {
+            isPlaying = true;
+            updateUI();
+        }).catch(err => {
+            console.error("Audio failed to play. Check if file exists:", filePath, err);
+        });
     }
 
     function pauseTrack() {
         if (!audioPlayer) return;
         audioPlayer.pause();
         isPlaying = false;
-        displayTracks();
+        updateUI();
     }
 
-    // Auto-advance for Play All
+    // Hero Buttons Click Event
+    heroBtns.forEach(btn => {
+        btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            const filePath = btn.dataset.file;
+            if (!filePath) return;
+
+            if (activeFilePath === filePath && isPlaying) {
+                pauseTrack();
+            } else {
+                isPlayAllActive = false;
+                if (playAllBtn) playAllBtn.classList.remove("active");
+                playAudioFile(filePath);
+            }
+        });
+    });
+
+    // Auto-advance for Play All mode
     if (audioPlayer) {
         audioPlayer.addEventListener("ended", function () {
-            if (isPlayAllActive && typeof currentTrackIndex === "number") {
-                const nextIndex = (currentTrackIndex + 1) % tracks.length;
-                currentTrackIndex = nextIndex;
-                activeHeroFile = null;
+            if (isPlayAllActive) {
+                const currentIndex = tracks.findIndex(t => t.file === activeFilePath);
+                const nextIndex = (currentIndex + 1) % tracks.length;
                 playAudioFile(tracks[nextIndex].file);
             } else {
                 isPlaying = false;
-                displayTracks();
+                updateUI();
             }
         });
     }
@@ -130,15 +94,16 @@ document.addEventListener("DOMContentLoaded", function () {
             playAllBtn.classList.toggle("active", isPlayAllActive);
 
             if (isPlayAllActive) {
-                if (typeof currentTrackIndex !== "number") {
-                    currentTrackIndex = 0;
-                    activeHeroFile = null;
+                const currentIndex = tracks.findIndex(t => t.file === activeFilePath);
+                if (currentIndex === -1) {
                     playAudioFile(tracks[0].file);
                 } else if (!isPlaying) {
                     audioPlayer.play();
                     isPlaying = true;
-                    displayTracks();
+                    updateUI();
                 }
+            } else {
+                pauseTrack();
             }
         });
     }
@@ -158,44 +123,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", () => toggleDrawer(false));
     if (sidebarOverlay) sidebarOverlay.addEventListener("click", () => toggleDrawer(false));
 
-    // Hero Original Button Click
-    if (originalBtn) {
-        originalBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            if (activeHeroFile === spawnlightOriginal && isPlaying) {
-                pauseTrack();
-            } else {
-                activeHeroFile = spawnlightOriginal;
-                currentTrackIndex = "hero-original";
-                playAudioFile(spawnlightOriginal);
-            }
-        });
-    }
-
-    // Hero Remix Button Click
-    if (remixBtn) {
-        remixBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            if (activeHeroFile === spawnlightRemix && isPlaying) {
-                pauseTrack();
-            } else {
-                activeHeroFile = spawnlightRemix;
-                currentTrackIndex = "hero-remix";
-                playAudioFile(spawnlightRemix);
-            }
-        });
-    }
-
-    // Render Tracklist with PNG Icons
+    // Render Tracklist
     function displayTracks() {
         if (!trackList) return;
         trackList.innerHTML = "";
 
-        tracks.forEach(function (track, realIndex) {
+        tracks.forEach(function (track) {
             const card = document.createElement("div");
             card.className = "sound-item";
 
-            const isCurrent = (realIndex === currentTrackIndex);
+            const isCurrent = (track.file === activeFilePath);
             const iconSymbol = (isCurrent && isPlaying) ? "❚❚" : "▶";
 
             card.innerHTML = `
@@ -218,16 +155,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
             card.addEventListener("click", function (e) {
                 e.stopPropagation();
-                if (realIndex === currentTrackIndex) {
-                    isPlaying ? pauseTrack() : audioPlayer.play();
+                if (track.file === activeFilePath && isPlaying) {
+                    pauseTrack();
                 } else {
-                    currentTrackIndex = realIndex;
-                    activeHeroFile = null;
                     playAudioFile(track.file);
                 }
             });
 
             trackList.appendChild(card);
+        });
+    }
+
+    // Master UI Refresh Function
+    function updateUI() {
+        displayTracks();
+
+        // Update Hero Icons
+        heroBtns.forEach(btn => {
+            const iconSpan = btn.querySelector("span");
+            if (iconSpan) {
+                const isCurrent = (btn.dataset.file === activeFilePath);
+                iconSpan.textContent = (isCurrent && isPlaying) ? "❚❚" : "▶";
+            }
         });
     }
 
