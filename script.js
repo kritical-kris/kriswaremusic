@@ -53,7 +53,7 @@ const tracks = [
         source: "Super Blox Bros.", 
         arranger: "Tixeron", 
         file: "Blox On and On.ogg",
-        icon: "blox-on-and-on.png" 
+        icon: "d2.png" 
     }
 ];
 
