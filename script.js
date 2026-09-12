@@ -2,56 +2,56 @@ const tracks = [
     { 
         title: "Super Blox Bros - Menu", 
         source: "Super Blox Bros.", 
-        arranger: "Kris Wright", 
+        arranger: "Tixeron", 
         file: "Super Blox Bros - Menu.ogg",
         icon: "sbb.png" 
     },
     { 
         title: "Bloxxing Fields", 
         source: "Super Blox Bros.", 
-        arranger: "Kris Wright", 
+        arranger: "Tixeron", 
         file: "Bloxxing Fields.ogg",
         icon: "d2.png" 
     },
     { 
         title: "Fire Bloxxer", 
         source: "Super Blox Bros.", 
-        arranger: "Kris Wright", 
+        arranger: "Tixeron", 
         file: "Fire Bloxxer.ogg",
         icon: "fire-bloxxer.png" 
     },
     { 
         title: "BLOX SHOT", 
         source: "Super Blox Bros.", 
-        arranger: "Kris Wright", 
+        arranger: "Tixeron", 
         file: "bloxshot-v2.ogg",
         icon: "d2.png" 
     },
     { 
         title: "Escape from HQ", 
         source: "Super Blox Bros.", 
-        arranger: "Kris Wright", 
+        arranger: "Tixeron", 
         file: "Escape from HQ.ogg",
         icon: "escape-hq.png" 
     },
     { 
         title: "Chaos Canyon", 
         source: "Super Blox Bros.", 
-        arranger: "Kris Wright", 
+        arranger: "Tixeron", 
         file: "Chaos Canyon.ogg",
         icon: "fire-bloxxer.png" 
     },
     { 
         title: "Banlands", 
         source: "Super Blox Bros.", 
-        arranger: "Kris Wright", 
+        arranger: "Tixeron", 
         file: "Banlands.ogg",
         icon: "sbb.png" 
     },
     { 
-        title: "Blox On and On", 
+        title: "From Now On (Remix)", 
         source: "Super Blox Bros.", 
-        arranger: "Kris Wright", 
+        arranger: "Tixeron", 
         file: "Blox On and On.ogg",
         icon: "blox-on-and-on.png" 
     }
